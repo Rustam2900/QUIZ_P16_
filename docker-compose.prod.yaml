@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: gunicorn QuizProject.wsgi:application --bind 0.0.0.0:8000
+    ports:
+      - 8002:8000
+    volumes:
+      - static_folder:/app/static
+    env_file:
+      - ../../../quiz_test_p16/QUIZ_P16_/.env
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=rus_2900
+      - POSTGRES_DB=quiz
+  nginx:
+    build: ../../../quiz_test_p16/QUIZ_P16_/nginx
+    ports:
+      - 8080:80
+    volumes:
+      - static_folder:/app/static
+    depends_on:
+      - web
+
+volumes:
+  postgres_data:
+  static_folder:
