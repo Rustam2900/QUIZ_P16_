@@ -5,12 +5,12 @@ from django.contrib.auth import get_user_model
 from django.shortcuts import render
 from django.core.cache import cache
 
-
 from .models import Question, Result, QuizType
 from .utils import check_answer
 from .filters import ResultFilter
 
 User = get_user_model()
+
 
 def qiuz(request):
     quizs = QuizType.objects.all()

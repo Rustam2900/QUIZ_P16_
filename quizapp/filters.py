@@ -2,6 +2,7 @@ import django_filters
 
 from .models import Result
 
+
 class ResultFilter(django_filters.FilterSet):
     first_name = django_filters.CharFilter(field_name='user__first_name', lookup_expr='icontains')
     last_name = django_filters.CharFilter(field_name='user__last_name', lookup_expr='icontains')

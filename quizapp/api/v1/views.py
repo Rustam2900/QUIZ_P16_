@@ -10,16 +10,15 @@ from rest_framework.permissions import IsAuthenticated
 
 from rest_framework_simplejwt.authentication import JWTAuthentication
 
-
 from .serializers import QuizTypeSerializer, QuestionSerializer, ResultSerializer
 from ...models import QuizType, Question, Result
 
 
 @api_view(['GET'])
 def hello_world(request):
-
     data = {'message': 'hello world'}
     return Response(data=data, status=status.HTTP_200_OK)
+
 
 @api_view(['GET', 'POST'])
 def quiz_types(request):
@@ -34,9 +33,9 @@ def quiz_types(request):
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
         return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+
 @api_view(['GET', 'PUT', 'DELETE'])
 def quiz_type_detail(request, pk):
-
     try:
         quiz_type = QuizType.objects.get(pk=pk)
     except QuizType.DoesNotExist:
@@ -68,8 +67,8 @@ def quiz_type_detail(request, pk):
 # class QuestionListAPIView(generics.ListCreateAPIView):
 #     queryset = Question.objects.all()
 #     serializer_class = QuestionSerializer
-    # authentication_classes = [TokenAuthentication, BasicAuthentication]
-    # permission_classes = [IsAuthenticated]
+# authentication_classes = [TokenAuthentication, BasicAuthentication]
+# permission_classes = [IsAuthenticated]
 
 # class QuestionDetailAPIView(generics.RetrieveUpdateDestroyAPIView):
 #     queryset = Question.objects.all()
@@ -87,7 +86,7 @@ def quiz_type_detail(request, pk):
 #     pass
 
 
-class QuestionViewSet(viewsets.ModelViewSet):
+class QuestionViewSet(viewsets.ModelViewSet): # QuestionViewSet
     # throttle_scope = 'question'
     authentication_classes = []
     permission_classes = []
@@ -110,4 +109,3 @@ class QuestionViewSet(viewsets.ModelViewSet):
         results = Result.objects.filter(user=request.user.id)
         serializer = ResultSerializer(results, many=True)
         return Response(data=serializer.data, status=status.HTTP_200_OK)
-

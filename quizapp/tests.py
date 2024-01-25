@@ -3,6 +3,7 @@ from django.urls import reverse
 
 from .models import QuizType
 from quizapp.api.v1.serializers import QuizTypeSerializer
+from quizapp.api.v1.views import QuestionViewSet
 
 
 class TestQuizTypeSerializer(TestCase):
@@ -14,6 +15,7 @@ class TestQuizTypeSerializer(TestCase):
 
         assert serializer['id'] == self.quiz_type.id
 
+
 class TestHelloWord(TestCase):
     def setUp(self) -> None:
         self.url = reverse('hello_world')
@@ -22,6 +24,7 @@ class TestHelloWord(TestCase):
         response = self.client.get(self.url)
         assert response.status_code == 200
         assert response.json()['message'] == 'hello world'
+
 
 class TestQuizTypeView(TestCase):
     def setUp(self):
@@ -59,3 +62,16 @@ class TestQuizTypeView(TestCase):
 
         assert response.status_code == 400
 
+
+#  func quiz_type_detail va class QuestionViewSet ga test yozish kerak
+
+
+# class TestQuestionViewSet(TestCase):
+#
+#     def setUp(self):
+#         self.quiz_type = QuizType.objects.create(name='quiz')
+#
+#     def test_search_fields(self):
+#         search = QuestionViewSet(self.search_fields).data
+#
+#         assert search['name'] == self.search.name
