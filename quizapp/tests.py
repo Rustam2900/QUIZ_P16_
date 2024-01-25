@@ -63,15 +63,3 @@ class TestQuizTypeView(TestCase):
         assert response.status_code == 400
 
 
-#  func quiz_type_detail va class QuestionViewSet ga test yozish kerak
-
-
-# class TestQuestionViewSet(TestCase):
-#
-#     def setUp(self):
-#         self.quiz_type = QuizType.objects.create(name='quiz')
-#
-#     def test_search_fields(self):
-#         search = QuestionViewSet(self.search_fields).data
-#
-#         assert search['name'] == self.search.name
