@@ -41,5 +41,6 @@ jobs:
           SQL_PORT: 5432
 
         run: python manage.py test
+            python manage.py migrate
 
 
