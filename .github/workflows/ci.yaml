@@ -36,7 +36,7 @@ jobs:
           SQL_ENGINE: django.db.backends.postgresql
           SQL_DATABASE: quizdb
           SQL_USER: quiz
-          SQL_PASSWORD: 2002
+          SQL_PASSWORD: rus_2900
           SQL_HOST: localhost
           SQL_PORT: 5432
 
